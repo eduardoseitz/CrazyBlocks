@@ -9,12 +9,17 @@ public class BlockBehaviour : MonoBehaviour
 
     private bool hasBeenHit;
 
+    private void Start()
+    {
+        GameManager.instance.blocksRemaining++;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!hasBeenHit)
         {
             GetComponent<SpriteRenderer>().sprite = brokenSprite;
-            //AudioSource.PlayClipAtPoint(brokenAudio, transform.position);
+            AudioSource.PlayClipAtPoint(brokenAudio, Camera.main.transform.position, 0.3f);
             hasBeenHit = true;
         }
         else

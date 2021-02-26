@@ -7,7 +7,7 @@ public class GameOverDetector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Game Over");
-        SceneManager.LoadScene("GameOVer");
+        // Handle game over
+        SceneManager.LoadScene("GameOver");
     }
 }

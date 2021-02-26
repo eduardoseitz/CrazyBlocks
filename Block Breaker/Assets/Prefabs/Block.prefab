@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenSprite: {fileID: 21300000, guid: 0a0138ecf32059a40b6404c3d9e7eca2, type: 3}
-  brokenAudio: {fileID: 0}
+  brokenAudio: {fileID: 8300000, guid: e2ab6296369ddf8409438a4421fe46e4, type: 3}
