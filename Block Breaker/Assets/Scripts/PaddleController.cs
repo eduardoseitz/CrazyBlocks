@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PaddleController : MonoBehaviour
 {
+    [SerializeField] private float paddleSizeOffset = 0.75f;
     private float mouseHorizontalPosition;
     private float cameraHorizontalSize;
 
     private void Start()
     {
         // Get camera screen size in units taking in consideration the 4:3 aspect ratio less the paddle size
-        cameraHorizontalSize = Camera.main.orthographicSize / 3 * 4 - (transform.localScale.x);
+        cameraHorizontalSize = Camera.main.orthographicSize / 3 * 4 - (paddleSizeOffset);
     }
 
     // Update is called once per frame
