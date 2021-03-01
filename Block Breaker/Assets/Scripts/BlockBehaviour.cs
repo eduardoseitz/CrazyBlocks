@@ -18,13 +18,24 @@ public class BlockBehaviour : MonoBehaviour
     {
         if (!hasBeenHit)
         {
-            GetComponent<SpriteRenderer>().sprite = brokenSprite;
-            AudioSource.PlayClipAtPoint(brokenAudio, Camera.main.transform.position, 0.3f);
-            hasBeenHit = true;
+            DamageBlock();
         }
         else
         {
-            Destroy(gameObject);
+            DestroyBlock();
         }
+    }
+
+    private void DamageBlock()
+    {
+        GetComponent<SpriteRenderer>().sprite = brokenSprite;
+        AudioSource.PlayClipAtPoint(brokenAudio, Camera.main.transform.position, 0.3f);
+        hasBeenHit = true;
+    }
+
+    private void DestroyBlock()
+    {
+        GameManager.instance.blocksRemaining--;
+        Destroy(gameObject);
     }
 }

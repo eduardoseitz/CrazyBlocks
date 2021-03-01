@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class GameManager : MonoBehaviour
 
     public float blocksRemaining;
 
+    private SceneLoader sceneLoader;
+
     // Start is called before the first frame update
     void Start()
     {
         if (instance)
             Destroy(this);
         instance = this;
+
+        sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
     // Update is called once per frame
@@ -34,6 +39,6 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
         Debug.Log("Game won");
-        Time.timeScale = 0;
+        sceneLoader.LoadNextScene();
     }
 }
