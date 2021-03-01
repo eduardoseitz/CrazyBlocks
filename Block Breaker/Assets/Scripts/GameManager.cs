@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,21 +8,31 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool hasLaunched;
 
     public float blocksRemaining;
+    public int pointsPerBlock = 50;
+    public GameStatus gameStatus;
+    public TextMeshProUGUI scoreText;
 
     private SceneLoader sceneLoader;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         if (instance)
-            Destroy(this);
-        instance = this;
+            Destroy(this.gameObject);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
+    // Start is called before the first frame update
+    private void Start()
+    {
         sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (hasLaunched)
         {
@@ -34,6 +41,25 @@ public class GameManager : MonoBehaviour
                 WinGame();
             }
         }
+
+        Time.timeScale = gameStatus.timeScale;
+    }
+
+    public void ScoreBlock()
+    {
+        blocksRemaining--;
+        gameStatus.totalScore += pointsPerBlock;
+
+        scoreText.text = gameStatus.totalScore.ToString();
+    }
+
+    public void ResetGame()
+    {
+        blocksRemaining = 0;
+        gameStatus.totalScore = 0;
+        hasLaunched = false;
+
+        scoreText.text = gameStatus.totalScore.ToString();
     }
 
     private void WinGame()

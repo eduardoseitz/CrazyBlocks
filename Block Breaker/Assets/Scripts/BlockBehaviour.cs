@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BlockBehaviour : MonoBehaviour
 {
@@ -35,7 +33,7 @@ public class BlockBehaviour : MonoBehaviour
 
     private void DestroyBlock()
     {
-        GameManager.instance.blocksRemaining--;
+        GameManager.instance.ScoreBlock();
         Destroy(gameObject);
     }
 }

@@ -10,17 +10,22 @@ PrefabInstance:
     - target: {fileID: 1425782060324835008, guid: 00ebfc8e7e6dfcf41b96480be2415c38,
         type: 3}
       propertyPath: m_Name
-      value: RedBlock
+      value: RedBlock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425782060324835008, guid: 00ebfc8e7e6dfcf41b96480be2415c38,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1425782060324835010, guid: 00ebfc8e7e6dfcf41b96480be2415c38,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1425782060324835010, guid: 00ebfc8e7e6dfcf41b96480be2415c38,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1425782060324835010, guid: 00ebfc8e7e6dfcf41b96480be2415c38,
         type: 3}
