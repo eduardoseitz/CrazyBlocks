@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1425782060324835012}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,3 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenSprite: {fileID: 21300000, guid: 0a0138ecf32059a40b6404c3d9e7eca2, type: 3}
   brokenAudio: {fileID: 8300000, guid: e2ab6296369ddf8409438a4421fe46e4, type: 3}
+  blockParticleVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
+  hitPoints: 1

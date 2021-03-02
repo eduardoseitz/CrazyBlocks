@@ -11,7 +11,7 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadStartScene()
     {
-        GameManager.instance.ResetGame();
+        GameManager.instance.ResetScore();
         SceneManager.LoadScene(0);
     }
 

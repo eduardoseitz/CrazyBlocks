@@ -132,13 +132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ea6d75fbf025843baf6a9d70383d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: {x: 0, y: 10}
+  launchForce: {x: 0, y: 15}
   paddle: {fileID: 0}
   hitsounds:
   - {fileID: 8300000, guid: 727bd36b4d7b8274abded0f415cc29ac, type: 3}
   - {fileID: 8300000, guid: 7be5c156ad8e0bb4585bc058a0ee0c22, type: 3}
   - {fileID: 8300000, guid: d85422e436371044e95afdcf72efca6d, type: 3}
   maxSpeed: 1000
+  randomFactor: 0.2
 --- !u!82 &1267854892
 AudioSource:
   m_ObjectHideFlags: 0

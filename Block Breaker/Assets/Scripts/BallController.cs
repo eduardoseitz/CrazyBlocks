@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
@@ -7,6 +6,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private Transform paddle;
     [SerializeField] private AudioClip[] hitsounds;
     [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float randomFactor = 0.2f;
 
     private float verticalPaddleOffset;
 
@@ -40,6 +40,8 @@ public class BallController : MonoBehaviour
     {
         if (GameManager.instance.hasLaunched)
         {
+            Vector2 velocityTweak = new Vector2(Random.Range(0.1f, randomFactor), Random.Range(0.1f, randomFactor));
+            rigidBody.velocity -= velocityTweak;
             PlayRandomHitSound();
         }
     }

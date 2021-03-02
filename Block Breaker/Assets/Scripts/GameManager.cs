@@ -56,15 +56,24 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         blocksRemaining = 0;
-        gameStatus.totalScore = 0;
         hasLaunched = false;
+        
+    }
 
+    public void ResetScore()
+    {
+        gameStatus.totalScore = 0;
         scoreText.text = gameStatus.totalScore.ToString();
+
+        ResetGame();
     }
 
     private void WinGame()
     {
         Debug.Log("Game won");
+        
+        ResetGame();
+        
         sceneLoader.LoadNextScene();
     }
 }

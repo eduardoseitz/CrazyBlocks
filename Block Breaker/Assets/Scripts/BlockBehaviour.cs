@@ -4,36 +4,40 @@ public class BlockBehaviour : MonoBehaviour
 {
     [SerializeField] private Sprite brokenSprite;
     [SerializeField] private AudioClip brokenAudio;
+    [SerializeField] private GameObject blockParticleVFX;
 
-    private bool hasBeenHit;
+    [SerializeField] private int hitPoints;
 
     private void Start()
     {
-        GameManager.instance.blocksRemaining++;
+        if (gameObject.CompareTag("Breakable"))
+            GameManager.instance.blocksRemaining++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!hasBeenHit)
+        AudioSource.PlayClipAtPoint(brokenAudio, Camera.main.transform.position, 0.3f);
+
+        if (gameObject.CompareTag("Breakable"))
         {
             DamageBlock();
-        }
-        else
-        {
-            DestroyBlock();
         }
     }
 
     private void DamageBlock()
     {
         GetComponent<SpriteRenderer>().sprite = brokenSprite;
-        AudioSource.PlayClipAtPoint(brokenAudio, Camera.main.transform.position, 0.3f);
-        hasBeenHit = true;
+        
+        hitPoints--;
+        if (hitPoints <= 0)
+            DestroyBlock();
+
     }
 
     private void DestroyBlock()
     {
         GameManager.instance.ScoreBlock();
-        Destroy(gameObject);
+        Instantiate(blockParticleVFX, transform.position, transform.rotation);
+        Destroy(gameObject, 0.1f);
     }
 }
