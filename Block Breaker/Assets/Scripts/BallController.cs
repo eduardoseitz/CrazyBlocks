@@ -5,19 +5,20 @@ public class BallController : MonoBehaviour
     [SerializeField] private Vector2 launchForce;
     [SerializeField] private Transform paddle;
     [SerializeField] private AudioClip[] hitsounds;
-    [SerializeField] private float maxSpeed = 5f;
-    [SerializeField] private float randomFactor = 0.2f;
+    [SerializeField] private float minVelocityVector = 0f;
+    [SerializeField] private float maxVelocityVector = -0.2f;
+    [SerializeField] private float spiningSpeed = 2f;
 
     private float verticalPaddleOffset;
 
     private AudioSource audioSource;
-    private Rigidbody2D rigidBody;
+    private Rigidbody2D rigidBody2D;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
 
         verticalPaddleOffset = transform.position.y - paddle.position.y;
     }
@@ -34,14 +35,17 @@ public class BallController : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
                 LaunchBall();
         }
+
+        // Spin star
+        transform.Rotate(0, 0, rigidBody2D.velocity.magnitude * spiningSpeed, 0);   
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (GameManager.instance.hasLaunched)
         {
-            Vector2 velocityTweak = new Vector2(Random.Range(0.1f, randomFactor), Random.Range(0.1f, randomFactor));
-            rigidBody.velocity -= velocityTweak;
+            Vector2 velocityTweak = new Vector2(Random.Range(minVelocityVector, maxVelocityVector), Random.Range(minVelocityVector, maxVelocityVector));
+            rigidBody2D.velocity += velocityTweak;
             PlayRandomHitSound();
         }
     }
@@ -54,6 +58,6 @@ public class BallController : MonoBehaviour
     private void LaunchBall()
     {
         GameManager.instance.hasLaunched = true;
-        rigidBody.AddForce(launchForce, ForceMode2D.Impulse);
+        rigidBody2D.AddForce(launchForce, ForceMode2D.Impulse);
     }
 }

@@ -1,0 +1,10 @@
+// To Do
+-Swap ball sprite to a spining shuriken +
+-Swap paddle sprite to a kunai +
+-Implement triangle blocks
+-Implement biggers blocks
+-Implement paralel effect
+-Add music
+-10 levels
+-Mobile tilt controlls
+-You are done

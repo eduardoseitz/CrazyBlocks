@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [HideInInspector] public bool hasLaunched;
+    public bool hasLaunched;
 
     public float blocksRemaining;
     public int pointsPerBlock = 50;
