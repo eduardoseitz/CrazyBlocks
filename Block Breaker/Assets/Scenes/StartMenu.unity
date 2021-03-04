@@ -153,7 +153,7 @@ MonoBehaviour:
   pointsPerBlock: 50
   gameStatus:
     totalScore: 0
-    timeScale: 0.5
+    timeScale: 0.25
   scoreText: {fileID: 1453883453609372540}
 --- !u!4 &214150737
 Transform:
@@ -635,7 +635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &578093163
 MonoBehaviour:
   m_ObjectHideFlags: 0

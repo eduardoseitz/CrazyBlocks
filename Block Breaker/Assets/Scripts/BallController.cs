@@ -2,23 +2,26 @@
 
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private Vector2 launchForce;
-    [SerializeField] private Transform paddle;
+    [SerializeField] private float launchYForce = 20f;
+    [SerializeField] private float launchXForce = 10f;
     [SerializeField] private AudioClip[] hitsounds;
     [SerializeField] private float minVelocityVector = 0f;
     [SerializeField] private float maxVelocityVector = -0.2f;
     [SerializeField] private float spiningSpeed = 2f;
-
-    private float verticalPaddleOffset;
-
+    
+    private Transform paddle;
     private AudioSource audioSource;
     private Rigidbody2D rigidBody2D;
+
+    private float verticalPaddleOffset;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         rigidBody2D = GetComponent<Rigidbody2D>();
+
+        paddle = FindObjectOfType<PaddleController>().gameObject.transform;
 
         verticalPaddleOffset = transform.position.y - paddle.position.y;
     }
@@ -58,6 +61,6 @@ public class BallController : MonoBehaviour
     private void LaunchBall()
     {
         GameManager.instance.hasLaunched = true;
-        rigidBody2D.AddForce(launchForce, ForceMode2D.Impulse);
+        rigidBody2D.AddForce(new Vector2(Random.Range(-launchXForce, launchXForce), launchYForce), ForceMode2D.Impulse);
     }
 }

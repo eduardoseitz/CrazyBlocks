@@ -1,5 +1,7 @@
 // To Do
--Implement paralel effect
+-Build
+-Test
+-Record Share gif
 -Mobile tilt controlls
 
 // Done
@@ -9,3 +11,5 @@
 -Implement triangle blocks
 -Implement biggers blocks
 -10 levels
+-Implement paralel effect
+-Fix ball launch bug
