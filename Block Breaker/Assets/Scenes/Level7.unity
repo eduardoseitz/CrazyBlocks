@@ -2960,7 +2960,17 @@ PrefabInstance:
     - target: {fileID: 7358241805470705772, guid: 0bf3cca24a7e69c4991e0b4f04186788,
         type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358241805470705772, guid: 0bf3cca24a7e69c4991e0b4f04186788,
+        type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358241805470705772, guid: 0bf3cca24a7e69c4991e0b4f04186788,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7358241805470705774, guid: 0bf3cca24a7e69c4991e0b4f04186788,
         type: 3}
@@ -2972,6 +2982,11 @@ PrefabInstance:
       propertyPath: paddle
       value: 
       objectReference: {fileID: 1850003679}
+    - target: {fileID: 7358241805470706065, guid: 0bf3cca24a7e69c4991e0b4f04186788,
+        type: 3}
+      propertyPath: launchForce.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7358241805470706066, guid: 0bf3cca24a7e69c4991e0b4f04186788,
         type: 3}
       propertyPath: m_LocalPosition.x
