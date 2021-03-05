@@ -148,7 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16596cf08cc123948a1322e16373f4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLaunched: 0
+  isAutoTestEnabled: 0
+  autoTestOffset: 0.02
+  hasBallLaunched: 0
   blocksRemaining: 0
   pointsPerBlock: 50
   gameStatus:

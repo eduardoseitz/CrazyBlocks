@@ -5,10 +5,12 @@ public class BallController : MonoBehaviour
     [SerializeField] private float launchYForce = 20f;
     [SerializeField] private float launchXForce = 10f;
     [SerializeField] private AudioClip[] hitsounds;
-    [SerializeField] private float minVelocityVector = 0f;
-    [SerializeField] private float maxVelocityVector = -0.2f;
+    [SerializeField] private float minBumpTweak = 0f;
+    [SerializeField] private float maxBumpTweak = -0.2f;
     [SerializeField] private float spiningSpeed = 2f;
-    
+    [SerializeField] private float minVelocity = 5f;
+    [SerializeField] private float maxVelocity = 100f;
+
     private Transform paddle;
     private AudioSource audioSource;
     private Rigidbody2D rigidBody2D;
@@ -29,25 +31,53 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.hasLaunched == false)
+        if (GameManager.instance.hasBallLaunched == false)
         {
             // Follow the paddle
             transform.position = paddle.transform.position + new Vector3(0, verticalPaddleOffset, 0);
 
             // Launch the ball
-            if (Input.GetButtonDown("Fire1"))
+            if (GameManager.instance.isAutoTestEnabled)
+            {
+                // Ai movement
                 LaunchBall();
+            }
+            else
+            {
+                // Player movement
+                if (Input.GetButtonDown("Fire1"))
+                    LaunchBall();
+            }
         }
+        else
+        {
+            float currentVelocity = rigidBody2D.velocity.magnitude;
 
-        // Spin star
-        transform.Rotate(0, 0, rigidBody2D.velocity.magnitude * spiningSpeed, 0);   
+            // Bug fix to when ball is to slow launch again
+            if (currentVelocity < minVelocity) 
+            {
+                rigidBody2D.AddForce(new Vector2(Random.Range(-launchXForce, launchXForce), launchYForce) * 0.5f, ForceMode2D.Impulse);
+            }
+            // Limit velocity
+            else if (currentVelocity > maxVelocity)
+            {
+                float brakeSpeed = currentVelocity - maxVelocity;
+                Vector2 normalisedVelocity = rigidBody2D.velocity.normalized;
+                Vector2 brakeVelocity = normalisedVelocity * brakeSpeed;
+
+                rigidBody2D.AddForce(-brakeVelocity);
+            }
+
+            // Spin star
+            transform.Rotate(0, 0, rigidBody2D.velocity.magnitude * spiningSpeed, 0);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GameManager.instance.hasLaunched)
+        if (GameManager.instance.hasBallLaunched)
         {
-            Vector2 velocityTweak = new Vector2(Random.Range(minVelocityVector, maxVelocityVector), Random.Range(minVelocityVector, maxVelocityVector));
+            Vector2 velocityTweak = new Vector2(Random.Range(minBumpTweak, maxBumpTweak), Random.Range(minBumpTweak, maxBumpTweak));
             rigidBody2D.velocity += velocityTweak;
             PlayRandomHitSound();
         }
@@ -60,7 +90,10 @@ public class BallController : MonoBehaviour
 
     private void LaunchBall()
     {
-        GameManager.instance.hasLaunched = true;
+        transform.position = paddle.transform.position + new Vector3(0, verticalPaddleOffset, 0);
+        transform.rotation = Quaternion.identity;
+
+        GameManager.instance.hasBallLaunched = true;
         rigidBody2D.AddForce(new Vector2(Random.Range(-launchXForce, launchXForce), launchYForce), ForceMode2D.Impulse);
     }
 }

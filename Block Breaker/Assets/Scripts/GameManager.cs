@@ -5,7 +5,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public bool hasLaunched;
+    public bool isAutoTestEnabled;
+    public float autoTestOffset;
+    public bool hasBallLaunched;
 
     public float blocksRemaining;
     public int pointsPerBlock = 50;
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (hasLaunched)
+        if (hasBallLaunched)
         {
             if (blocksRemaining == 0)
             {
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         blocksRemaining = 0;
-        hasLaunched = false;
+        hasBallLaunched = false;
         
     }
 
@@ -70,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     private void WinGame()
     {
-        Debug.Log("Game won");
+        Debug.Log("Level Won");
         
         ResetGame();
         
